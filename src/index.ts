@@ -1,48 +1,76 @@
 window.addEventListener('load', () => {
-  /* const screen_top = document.getElementById('screen_top');
-  const screen_bottom = document.getElementById('screen_bottom');
-  const ac = document.getElementById('ac');
-  const ec = document.getElementById('ec');
-  const parentheses_left = document.getElementById('parentheses-left');
-  const parentheses_right = document.getElementById('parentheses-right');
-  const percent = document.getElementById('percent');
-  const divide = document.getElementById('divide');
-  const number_7 = document.getElementById('number-7');
-  const number_8 = document.getElementById('number-8');
-  const number_9 = document.getElementById('number-9');
-  const multiply = document.getElementById('multiply');
-  const number_4 = document.getElementById('number-4');
-  const number_5 = document.getElementById('number-5');
-  const number_6 = document.getElementById('number-6');
-  const subtract = document.getElementById('subtract');
-  const number_1 = document.getElementById('number-1');
-  const number_2 = document.getElementById('number-2');
-  const number_3 = document.getElementById('number-3');
-  const add = document.getElementById('add');
-  const number_0 = document.getElementById('number-0');
-  const decimal = document.getElementById('decimal');
-  const equal = document.getElementById('equal'); */
+  screenTopSpan = document.getElementById('screen-top');
+  screenBottomSpan = document.getElementById('screen-bottom');
 
-  screenBottom = document.getElementById('screen-bottom');
-
-  const numberButtons = <NodeListOf<HTMLButtonElement>>(
-    document.querySelectorAll('.number-btn')
-  );
-
-  numberButtons.forEach((btn) => {
+  document.querySelectorAll('.number-btn').forEach((btn) => {
     btn.addEventListener('click', () => {
-      addNumber(parseInt(btn.innerHTML));
+      addNumber(btn.innerHTML);
     });
+  });
+
+  document.querySelectorAll('.equation-btn').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      equateOldAndCurrent(btn.innerHTML);
+    });
+  });
+
+  document.getElementById('equal')?.addEventListener('click', () => {
+    equateResult();
   });
 });
 
-let screenBottom: HTMLSpanElement | null;
-let screenBottomValue: string;
+let screenTopSpan: HTMLSpanElement | null;
+let screenBottomSpan: HTMLSpanElement | null;
 
-function addNumber(number: number) {
-  console.log(number);
+let oldNumber: number;
+let currentNumber: number;
+let latestEquation: string;
 
-  if (screenBottom != undefined) {
-    screenBottom.innerHTML = number.toString() + screenBottom.innerHTML;
+function addNumber(number: string) {
+  if (screenBottomSpan != undefined) {
+    if (currentNumber === 0) {
+      screenBottomSpan.innerHTML = number;
+    } else {
+      screenBottomSpan.innerHTML += number;
+    }
+    currentNumber = parseFloat(screenBottomSpan.innerHTML);
+  }
+}
+
+function equateOldAndCurrent(equation: string) {
+  if (screenTopSpan != undefined && screenBottomSpan != undefined) {
+    if (oldNumber != undefined) {
+      equateNumbers();
+    } else {
+      oldNumber = currentNumber;
+    }
+
+    currentNumber = 0;
+    latestEquation = equation;
+
+    screenTopSpan.innerHTML = oldNumber + ' ' + latestEquation;
+    screenBottomSpan.innerHTML = currentNumber.toString();
+  }
+}
+
+function equateNumbers() {
+  if (latestEquation === '+') {
+    oldNumber += currentNumber;
+  } else if (latestEquation === '-') {
+    oldNumber -= currentNumber;
+  } else if (latestEquation === 'x') {
+    oldNumber *= currentNumber;
+  } else if (latestEquation === '/') {
+    oldNumber /= currentNumber;
+  }
+}
+
+function equateResult() {
+  if (screenTopSpan != undefined && screenBottomSpan != undefined) {
+    screenTopSpan.innerHTML =
+      oldNumber + ' ' + latestEquation + ' ' + currentNumber;
+    equateNumbers();
+    screenBottomSpan.innerHTML = oldNumber.toString();
+    currentNumber = 0;
   }
 }
