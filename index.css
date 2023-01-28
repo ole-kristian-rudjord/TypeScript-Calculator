@@ -15,8 +15,7 @@ body {
   display: grid;
   grid-template-areas:
     'screen screen screen screen'
-    'ac ac ec ec'
-    'parentheses-left parentheses-right percent divide'
+    'ac ec percent divide'
     'number-7 number-8 number-9 multiply'
     'number-4 number-5 number-6 subtract'
     'number-1 number-2 number-3 add'
@@ -35,6 +34,12 @@ body {
   flex-direction: column;
   height: 60px;
   border: 1px solid black;
+}
+
+#screen span {
+  height: 50%;
+  width: 100%;
+  text-align: right;
 }
 
 #ac {
