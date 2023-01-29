@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap");
 * {
   margin: 0;
   padding: 0;
@@ -9,29 +10,71 @@ body {
   justify-content: center;
   align-items: center;
   height: 100vh;
+  background-color: blue;
 }
 
 #calculator {
   display: grid;
   grid-template-areas: "screen screen screen screen" "ac ac ce ce" "number-7 number-8 number-9 divide" "number-4 number-5 number-6 multiply" "number-1 number-2 number-3 subtract" "number-0 decimal equal add";
-  gap: 10px;
+  gap: 12px;
+  padding: 36px;
+  border-radius: 6px;
 }
-#calculator button {
-  min-height: 30px;
-  min-width: 60px;
-}
-
-#screen {
+#calculator #screen {
   grid-area: screen;
   display: flex;
   flex-direction: column;
-  height: 60px;
-  border: 1px solid black;
+  gap: 12px;
+  background-color: red;
+  padding: 12px;
+  border-radius: 6px;
 }
-#screen span {
-  height: 50%;
+#calculator #screen span {
+  display: flex;
+  justify-content: right;
+  align-items: center;
   width: 100%;
-  text-align: right;
+  font-family: "Roboto Mono", monospace;
+}
+#calculator #screen span#screen-top {
+  height: 16px;
+  font-size: 16px;
+}
+#calculator #screen span#screen-bottom {
+  height: 40px;
+  font-size: 40px;
+}
+#calculator button {
+  position: relative;
+  min-height: 60px;
+  min-width: 72px;
+  font-size: 16px;
+  font-family: "Roboto Mono", monospace;
+  color: white;
+  background-color: red;
+  border: none;
+  border-radius: 6px;
+  margin-bottom: 12px;
+  transition: margin 100ms ease;
+}
+#calculator button:active {
+  margin-bottom: 0;
+  margin-top: 12px;
+}
+#calculator button:active::after {
+  bottom: 0;
+}
+#calculator button::after {
+  content: "";
+  z-index: -1;
+  position: absolute;
+  bottom: -12px;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: darkred;
+  border-radius: 6px;
+  transition: bottom 100ms ease;
 }
 
 #ac {
@@ -104,8 +147,4 @@ body {
 
 #equal {
   grid-area: equal;
-}
-
-p {
-  font-size: 2rem;
 }

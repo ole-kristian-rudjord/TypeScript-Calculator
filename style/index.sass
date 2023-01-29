@@ -1,3 +1,21 @@
+// color
+$primary-fg-color: red
+$secondary-fg-color: darkred
+$primary-bg-color: blue
+$secondary-bg-color: darkblue
+$text-color: white
+
+// spacing
+$base-spacing: 12px
+$base-border-radius: 6px
+  
+// font
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap')
+$base-font-family: 'Roboto Mono', monospace
+$base-font-size: 16px
+$large-font-size: calc($base-font-size * 2.5)
+
+  
 *
   margin: 0
   padding: 0
@@ -8,27 +26,72 @@ body
   justify-content: center
   align-items: center
   height: 100vh
+  background-color: $primary-bg-color
+
+$calculator-downpress-transition: 100ms ease
 
 #calculator
   display: grid
   grid-template-areas: 'screen screen screen screen''ac ac ce ce''number-7 number-8 number-9 divide''number-4 number-5 number-6 multiply''number-1 number-2 number-3 subtract''number-0 decimal equal add'
-  gap: 10px
+  gap: $base-spacing
+  padding: calc($base-spacing * 3)
+  border-radius: $base-border-radius
+
+  & #screen
+    grid-area: screen
+    display: flex
+    flex-direction: column
+    gap: $base-spacing
+    background-color: $primary-fg-color
+    padding: $base-spacing
+    border-radius: $base-border-radius
+  
+    & span 
+      display: flex
+      justify-content: right
+      align-items: center
+      width: 100%
+      font-family: $base-font-family
+
+      &#screen-top
+        height: $base-font-size
+        font-size: $base-font-size
+
+      &#screen-bottom
+        height: $large-font-size
+        font-size: $large-font-size
   
   & button
-    min-height: 30px
-    min-width: 60px
+    position: relative
+    min-height: calc($base-spacing * 5)
+    min-width: calc($base-spacing * 6)
+    font-size: $base-font-size
+    font-family: $base-font-family
+    color: $text-color
+    background-color: $primary-fg-color
+    border: none
+    border-radius: $base-border-radius
+    margin-bottom: $base-spacing
+    transition: margin $calculator-downpress-transition
 
-#screen
-  grid-area: screen
-  display: flex
-  flex-direction: column
-  height: 60px
-  border: 1px solid black
-  
-  & span 
-    height: 50%
-    width: 100%
-    text-align: right
+    &:active
+      margin-bottom: 0
+      margin-top: $base-spacing
+
+      &::after
+        bottom: 0
+
+    &::after
+      content: ''
+      z-index: -1
+      position: absolute
+      bottom: -$base-spacing
+      left: 0
+      height: 100%
+      width: 100%
+      background-color: $secondary-fg-color
+      border-radius: $base-border-radius
+      transition: bottom $calculator-downpress-transition
 
 #ac
   grid-area: ac
@@ -66,7 +129,4 @@ body
   grid-area: decimal
 #equal
   grid-area: equal
-
-p 
-  font-size: 2rem
 
