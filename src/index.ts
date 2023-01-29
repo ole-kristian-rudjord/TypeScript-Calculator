@@ -34,10 +34,6 @@ window.addEventListener('load', () => {
       equateOldAndCurrent(btn.innerHTML);
     });
   });
-
-  oldSpan = document.getElementById('old-span');
-  currentSpan = document.getElementById('current-span');
-  equationSpan = document.getElementById('equation-span');
 });
 
 let screenTopSpan: HTMLSpanElement | null;
@@ -60,8 +56,6 @@ function allClear() {
     screenTopSpan.innerHTML = '';
     screenBottomSpan.innerHTML = currentNumber.toString();
   }
-
-  updateP();
 }
 
 function clearEntry() {
@@ -69,8 +63,6 @@ function clearEntry() {
     currentNumber = 0;
     screenBottomSpan.innerHTML = currentNumber.toString();
   }
-
-  updateP();
 }
 
 function addNumber(number: string) {
@@ -85,8 +77,6 @@ function addNumber(number: string) {
     }
     currentNumber = parseFloat(screenBottomSpan.innerHTML);
   }
-
-  updateP();
 }
 
 function addDecimal() {
@@ -116,8 +106,6 @@ function equateResult() {
       currentNumber = undefined;
     }
   }
-
-  updateP();
 }
 
 function equateOldAndCurrent(equation: string) {
@@ -134,8 +122,6 @@ function equateOldAndCurrent(equation: string) {
     screenTopSpan.innerHTML = oldNumber + ' ' + latestEquation;
     screenBottomSpan.innerHTML = currentNumber.toString();
   }
-
-  updateP();
 }
 
 function equateNumbers(): boolean {
@@ -153,10 +139,8 @@ function equateNumbers(): boolean {
         return false;
       }
     }
-    updateP();
     return true;
   }
-  updateP();
   return false;
 }
 
@@ -168,33 +152,5 @@ function infinityError() {
 
     screenTopSpan.innerHTML = '';
     screenBottomSpan.innerHTML = 'Error';
-  }
-
-  updateP();
-}
-
-let oldSpan: HTMLSpanElement | null;
-let currentSpan: HTMLSpanElement | null;
-let equationSpan: HTMLSpanElement | null;
-
-function updateP() {
-  if (oldSpan != undefined) {
-    if (oldNumber != undefined) {
-      oldSpan.innerHTML = oldNumber.toString();
-    } else {
-      oldSpan.innerHTML = 'undefined';
-    }
-  }
-  if (currentSpan != undefined) {
-    if (currentNumber != undefined) {
-      currentSpan.innerHTML = currentNumber.toString();
-    } else {
-      currentSpan.innerHTML = 'undefined';
-    }
-  }
-  if (equationSpan != undefined) {
-    if (latestEquation != undefined) {
-      equationSpan.innerHTML = latestEquation;
-    }
   }
 }

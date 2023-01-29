@@ -29,9 +29,6 @@ window.addEventListener('load', () => {
             equateOldAndCurrent(btn.innerHTML);
         });
     });
-    oldSpan = document.getElementById('old-span');
-    currentSpan = document.getElementById('current-span');
-    equationSpan = document.getElementById('equation-span');
 });
 let screenTopSpan;
 let screenBottomSpan;
@@ -48,14 +45,12 @@ function allClear() {
         screenTopSpan.innerHTML = '';
         screenBottomSpan.innerHTML = currentNumber.toString();
     }
-    updateP();
 }
 function clearEntry() {
     if (screenBottomSpan != undefined) {
         currentNumber = 0;
         screenBottomSpan.innerHTML = currentNumber.toString();
     }
-    updateP();
 }
 function addNumber(number) {
     if (screenBottomSpan != undefined && screenTopSpan != undefined) {
@@ -71,7 +66,6 @@ function addNumber(number) {
         }
         currentNumber = parseFloat(screenBottomSpan.innerHTML);
     }
-    updateP();
 }
 function addDecimal() {
     if (screenTopSpan != undefined && screenBottomSpan != undefined) {
@@ -98,7 +92,6 @@ function equateResult() {
             currentNumber = undefined;
         }
     }
-    updateP();
 }
 function equateOldAndCurrent(equation) {
     if (screenTopSpan != undefined && screenBottomSpan != undefined) {
@@ -113,7 +106,6 @@ function equateOldAndCurrent(equation) {
         screenTopSpan.innerHTML = oldNumber + ' ' + latestEquation;
         screenBottomSpan.innerHTML = currentNumber.toString();
     }
-    updateP();
 }
 function equateNumbers() {
     if (oldNumber != undefined && currentNumber != undefined) {
@@ -133,10 +125,8 @@ function equateNumbers() {
                 return false;
             }
         }
-        updateP();
         return true;
     }
-    updateP();
     return false;
 }
 function infinityError() {
@@ -146,33 +136,6 @@ function infinityError() {
         latestEquation = '';
         screenTopSpan.innerHTML = '';
         screenBottomSpan.innerHTML = 'Error';
-    }
-    updateP();
-}
-let oldSpan;
-let currentSpan;
-let equationSpan;
-function updateP() {
-    if (oldSpan != undefined) {
-        if (oldNumber != undefined) {
-            oldSpan.innerHTML = oldNumber.toString();
-        }
-        else {
-            oldSpan.innerHTML = 'undefined';
-        }
-    }
-    if (currentSpan != undefined) {
-        if (currentNumber != undefined) {
-            currentSpan.innerHTML = currentNumber.toString();
-        }
-        else {
-            currentSpan.innerHTML = 'undefined';
-        }
-    }
-    if (equationSpan != undefined) {
-        if (latestEquation != undefined) {
-            equationSpan.innerHTML = latestEquation;
-        }
     }
 }
 //# sourceMappingURL=index.js.map
