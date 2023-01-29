@@ -55,9 +55,13 @@ function addNumber(number) {
     updateP();
 }
 function addDecimal() {
-    if (screenBottomSpan != undefined) {
-        console.log(screenBottomSpan.innerHTML.includes('.'));
-        if (!screenBottomSpan.innerHTML.includes('.')) {
+    if (screenTopSpan != undefined && screenBottomSpan != undefined) {
+        if (currentNumber === undefined) {
+            screenTopSpan.innerHTML = (oldNumber === null || oldNumber === void 0 ? void 0 : oldNumber.toString()) + ' ' + latestEquation;
+            screenBottomSpan.innerHTML = '0.';
+            currentNumber = parseFloat(screenBottomSpan.innerHTML);
+        }
+        else if (!screenBottomSpan.innerHTML.includes('.')) {
             screenBottomSpan.innerHTML += '.';
             currentNumber = parseFloat(screenBottomSpan.innerHTML);
         }
