@@ -7,27 +7,27 @@ window.addEventListener('load', () => {
     if (screenBottomSpan != undefined) {
         screenBottomSpan.innerHTML = currentNumber.toString();
     }
+    (_a = document.getElementById('ac')) === null || _a === void 0 ? void 0 : _a.addEventListener('click', () => {
+        allClear();
+    });
+    (_b = document.getElementById('ce')) === null || _b === void 0 ? void 0 : _b.addEventListener('click', () => {
+        clearEntry();
+    });
     document.querySelectorAll('.number-btn').forEach((btn) => {
         btn.addEventListener('click', () => {
             addNumber(btn.innerHTML);
         });
     });
-    (_a = document.getElementById('decimal')) === null || _a === void 0 ? void 0 : _a.addEventListener('click', () => {
+    (_c = document.getElementById('decimal')) === null || _c === void 0 ? void 0 : _c.addEventListener('click', () => {
         addDecimal();
+    });
+    (_d = document.getElementById('equal')) === null || _d === void 0 ? void 0 : _d.addEventListener('click', () => {
+        equateResult();
     });
     document.querySelectorAll('.equation-btn').forEach((btn) => {
         btn.addEventListener('click', () => {
             equateOldAndCurrent(btn.innerHTML);
         });
-    });
-    (_b = document.getElementById('equal')) === null || _b === void 0 ? void 0 : _b.addEventListener('click', () => {
-        equateResult();
-    });
-    (_c = document.getElementById('ac')) === null || _c === void 0 ? void 0 : _c.addEventListener('click', () => {
-        allClear();
-    });
-    (_d = document.getElementById('ce')) === null || _d === void 0 ? void 0 : _d.addEventListener('click', () => {
-        clearEntry();
     });
     oldSpan = document.getElementById('old-span');
     currentSpan = document.getElementById('current-span');
@@ -38,6 +38,25 @@ let screenBottomSpan;
 let oldNumber;
 let currentNumber;
 let latestEquation;
+function allClear() {
+    oldNumber = undefined;
+    currentNumber = 0;
+    latestEquation = '';
+    if (screenTopSpan != undefined &&
+        screenBottomSpan != undefined &&
+        currentNumber != undefined) {
+        screenTopSpan.innerHTML = '';
+        screenBottomSpan.innerHTML = currentNumber.toString();
+    }
+    updateP();
+}
+function clearEntry() {
+    if (screenBottomSpan != undefined) {
+        currentNumber = 0;
+        screenBottomSpan.innerHTML = currentNumber.toString();
+    }
+    updateP();
+}
 function addNumber(number) {
     if (screenBottomSpan != undefined && screenTopSpan != undefined) {
         if (screenBottomSpan.innerHTML === '0') {
@@ -66,6 +85,20 @@ function addDecimal() {
             currentNumber = parseFloat(screenBottomSpan.innerHTML);
         }
     }
+}
+function equateResult() {
+    if (screenTopSpan != undefined &&
+        screenBottomSpan != undefined &&
+        oldNumber != undefined &&
+        currentNumber != undefined) {
+        screenTopSpan.innerHTML =
+            oldNumber + ' ' + latestEquation + ' ' + currentNumber;
+        if (equateNumbers() === true) {
+            screenBottomSpan.innerHTML = oldNumber.toString();
+            currentNumber = undefined;
+        }
+    }
+    updateP();
 }
 function equateOldAndCurrent(equation) {
     if (screenTopSpan != undefined && screenBottomSpan != undefined) {
@@ -115,38 +148,6 @@ function infinityError() {
         screenBottomSpan.innerHTML = 'Error';
     }
     updateP();
-}
-function equateResult() {
-    if (screenTopSpan != undefined &&
-        screenBottomSpan != undefined &&
-        oldNumber != undefined &&
-        currentNumber != undefined) {
-        screenTopSpan.innerHTML =
-            oldNumber + ' ' + latestEquation + ' ' + currentNumber;
-        if (equateNumbers() === true) {
-            screenBottomSpan.innerHTML = oldNumber.toString();
-            currentNumber = undefined;
-        }
-    }
-    updateP();
-}
-function allClear() {
-    oldNumber = undefined;
-    currentNumber = 0;
-    latestEquation = '';
-    if (screenTopSpan != undefined &&
-        screenBottomSpan != undefined &&
-        currentNumber != undefined) {
-        screenTopSpan.innerHTML = '';
-        screenBottomSpan.innerHTML = currentNumber.toString();
-    }
-    updateP();
-}
-function clearEntry() {
-    if (screenBottomSpan != undefined) {
-        currentNumber = 0;
-        screenBottomSpan.innerHTML = currentNumber.toString();
-    }
 }
 let oldSpan;
 let currentSpan;
