@@ -15,10 +15,10 @@ body {
   display: grid;
   grid-template-areas:
     'screen screen screen screen'
-    'ac ce percent divide'
-    'number-7 number-8 number-9 multiply'
-    'number-4 number-5 number-6 subtract'
-    'number-1 number-2 number-3 add'
+    'ac ac ce ce'
+    'number-7 number-8 number-9 divide'
+    'number-4 number-5 number-6 multiply'
+    'number-1 number-2 number-3 subtract'
     'number-0 decimal equal add';
   gap: 10px;
 }
@@ -47,15 +47,6 @@ body {
 }
 #ce {
   grid-area: ce;
-}
-#parentheses-left {
-  grid-area: parentheses-left;
-}
-#parentheses-right {
-  grid-area: parentheses-right;
-}
-#percent {
-  grid-area: percent;
 }
 #divide {
   grid-area: divide;
