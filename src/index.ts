@@ -7,6 +7,22 @@ window.addEventListener('load', () => {
     screenBottomSpan.innerHTML = currentNumber.toString();
   }
 
+  const btnClickSoundDown = new Audio('./sounds/btn-click-sound-down.mp3');
+  const btnClickSoundUp = new Audio('./sounds/btn-click-sound-up.mp3');
+
+  document.querySelectorAll('#calculator button').forEach((btn) => {
+    btn.addEventListener('mousedown', () => {
+      btnClickSoundDown.pause();
+      btnClickSoundDown.currentTime = 0;
+      btnClickSoundDown.play();
+    });
+    btn.addEventListener('mouseup', () => {
+      btnClickSoundUp.pause();
+      btnClickSoundUp.currentTime = 0;
+      btnClickSoundUp.play();
+    });
+  });
+
   document.getElementById('ac')?.addEventListener('click', () => {
     allClear();
   });
