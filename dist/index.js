@@ -159,7 +159,7 @@ function equateResult() {
         oldNumber != undefined &&
         currentNumber != undefined) {
         screenTopSpan.innerHTML =
-            oldNumber + ' ' + latestEquation + ' ' + currentNumber;
+            oldNumber + ' ' + latestEquation + ' ' + currentNumber + ' =';
         if (equateNumbers() === true) {
             screenBottomSpan.innerHTML = oldNumber.toString();
             currentNumber = undefined;
