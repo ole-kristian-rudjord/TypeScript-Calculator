@@ -65,20 +65,20 @@ body {
   transition-property: margin, box-shadow;
   transition: 100ms ease;
 }
-#calculator button.clear, #calculator button#equal {
+#calculator button.clear {
   color: #deff65;
   background-color: #878f58;
   box-shadow: 0 12px 0 0 #6d7151;
 }
-#calculator button.clear:active, #calculator button#equal:active {
+#calculator button.clear:active {
   box-shadow: 0 0 0 0 #6d7151;
 }
-#calculator button.number-btn, #calculator button#decimal {
+#calculator button.number-btn, #calculator button#decimal, #calculator button#equal {
   color: #deff65;
   background-color: #A3AB78;
   box-shadow: 0 12px 0 0 #818274;
 }
-#calculator button.number-btn:active, #calculator button#decimal:active {
+#calculator button.number-btn:active, #calculator button#decimal:active, #calculator button#equal:active {
   box-shadow: 0 0 0 0 #818274;
 }
 #calculator button.equation-btn {

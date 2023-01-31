@@ -94,8 +94,7 @@ $calculator-downpress-transition: 100ms ease
     transition-property: margin, box-shadow
     transition: $calculator-downpress-transition
 
-    &.clear,
-    &#equal
+    &.clear
       color: $clear-btn-text-color
       background-color: $clear-btn-fg-color
       box-shadow: 0 $base-spacing 0 0 $clear-btn-bg-color
@@ -104,7 +103,8 @@ $calculator-downpress-transition: 100ms ease
         box-shadow: 0 0 0 0 $clear-btn-bg-color
 
     &.number-btn,
-    &#decimal
+    &#decimal,
+    &#equal
       color: $main-btn-text-color
       background-color: $main-btn-fg-color
       box-shadow: 0 $base-spacing 0 0 $main-btn-bg-color
