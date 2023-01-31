@@ -73,13 +73,22 @@ body {
 #calculator button.clear:active {
   box-shadow: 0 0 0 0 #6d7151;
 }
-#calculator button.number-btn, #calculator button#decimal, #calculator button#equal {
+#calculator button.number-btn, #calculator button#decimal {
   color: #deff65;
   background-color: #A3AB78;
   box-shadow: 0 12px 0 0 #818274;
 }
-#calculator button.number-btn:active, #calculator button#decimal:active, #calculator button#equal:active {
+#calculator button.number-btn:active, #calculator button#decimal:active {
   box-shadow: 0 0 0 0 #818274;
+}
+#calculator button#equal {
+  border: 2px solid #deff65;
+  color: #deff65;
+  background-color: #A3AB78;
+  box-shadow: 0 12px 0 0 #97ac51;
+}
+#calculator button#equal:active {
+  box-shadow: 0 0 0 0 #97ac51;
 }
 #calculator button.equation-btn {
   color: #473A2B;

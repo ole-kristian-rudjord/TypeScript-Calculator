@@ -16,6 +16,10 @@ $main-btn-text-color: #deff65
 $main-btn-fg-color: #A3AB78
 $main-btn-bg-color: #818274
 
+$equal-btn-text-color: #deff65
+$equal-btn-fg-color: #A3AB78
+$equal-btn-bg-color: #97ac51
+
 $equation-btn-text-color: #473A2B
 $equation-btn-fg-color: #DE681D
 $equation-btn-bg-color: #b65316
@@ -105,14 +109,22 @@ $calculator-downpress-transition: 100ms ease
         box-shadow: 0 0 0 0 $clear-btn-bg-color
 
     &.number-btn,
-    &#decimal,
-    &#equal
+    &#decimal
       color: $main-btn-text-color
       background-color: $main-btn-fg-color
       box-shadow: 0 $base-spacing 0 0 $main-btn-bg-color
 
       &:active
         box-shadow: 0 0 0 0 $main-btn-bg-color
+
+    &#equal
+      border: 2px solid $equal-btn-text-color
+      color: $equal-btn-text-color
+      background-color: $equal-btn-fg-color
+      box-shadow: 0 $base-spacing 0 0 $equal-btn-bg-color
+
+      &:active
+        box-shadow: 0 0 0 0 $equal-btn-bg-color
 
     &.equation-btn
       color: $equation-btn-text-color
