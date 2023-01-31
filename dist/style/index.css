@@ -10,24 +10,31 @@ body {
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background-color: blue;
+  background-color: white;
 }
 
 #calculator {
+  position: relative;
   display: grid;
   grid-template-areas: "screen screen screen screen" "ac ac ce ce" "number-7 number-8 number-9 divide" "number-4 number-5 number-6 multiply" "number-1 number-2 number-3 subtract" "number-0 decimal equal add";
   gap: 12px;
   padding: 36px;
+  background-color: #506266;
   border-radius: 6px;
+  box-shadow: 0 12px 0 0 #10454F;
+}
+#calculator::after {
+  content: "";
+  position: absolute;
 }
 #calculator #screen {
   grid-area: screen;
   display: flex;
   flex-direction: column;
   gap: 12px;
-  background-color: red;
   padding: 12px;
   border-radius: 6px;
+  background-color: #DE681D;
 }
 #calculator #screen span {
   display: flex;
@@ -39,10 +46,12 @@ body {
 #calculator #screen span#screen-top {
   height: 16px;
   font-size: 16px;
+  color: #473A2B;
 }
 #calculator #screen span#screen-bottom {
   height: 40px;
   font-size: 40px;
+  color: #473A2B;
 }
 #calculator button {
   position: relative;
@@ -50,31 +59,39 @@ body {
   min-width: 72px;
   font-size: 16px;
   font-family: "Roboto Mono", monospace;
-  color: white;
-  background-color: red;
   border: none;
   border-radius: 6px;
   margin-bottom: 12px;
-  transition: margin 100ms ease;
+  transition-property: margin, box-shadow;
+  transition: 100ms ease;
+}
+#calculator button.clear, #calculator button#equal {
+  color: #deff65;
+  background-color: #878f58;
+  box-shadow: 0 12px 0 0 #6d7151;
+}
+#calculator button.clear:active, #calculator button#equal:active {
+  box-shadow: 0 0 0 0 #6d7151;
+}
+#calculator button.number-btn, #calculator button#decimal {
+  color: #deff65;
+  background-color: #A3AB78;
+  box-shadow: 0 12px 0 0 #818274;
+}
+#calculator button.number-btn:active, #calculator button#decimal:active {
+  box-shadow: 0 0 0 0 #818274;
+}
+#calculator button.equation-btn {
+  color: #473A2B;
+  background-color: #DE681D;
+  box-shadow: 0 12px 0 0 #b65316;
+}
+#calculator button.equation-btn:active {
+  box-shadow: 0 0 0 0 #b65316;
 }
 #calculator button:active {
   margin-bottom: 0;
   margin-top: 12px;
-}
-#calculator button:active::after {
-  bottom: 0;
-}
-#calculator button::after {
-  content: "";
-  z-index: -1;
-  position: absolute;
-  bottom: -12px;
-  left: 0;
-  height: 100%;
-  width: 100%;
-  background-color: darkred;
-  border-radius: 6px;
-  transition: bottom 100ms ease;
 }
 
 #ac {

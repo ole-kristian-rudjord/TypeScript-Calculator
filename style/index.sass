@@ -1,21 +1,33 @@
 // color
-$primary-fg-color: red
-$secondary-fg-color: darkred
-$primary-bg-color: blue
-$secondary-bg-color: darkblue
-$text-color: white
+$calc-fg-color: #506266
+$calc-bg-color: #10454F
+
+$screen-top-text-color: #473A2B
+$screen-bottom-text-color: #473A2B
+$screen-bg-color: #DE681D
+
+$clear-btn-text-color: #deff65
+$clear-btn-fg-color: #878f58
+$clear-btn-bg-color: #6d7151
+
+$main-btn-text-color: #deff65
+$main-btn-fg-color: #A3AB78
+$main-btn-bg-color: #818274
+
+$equation-btn-text-color: #473A2B
+$equation-btn-fg-color: #DE681D
+$equation-btn-bg-color: #b65316
 
 // spacing
 $base-spacing: 12px
 $base-border-radius: 6px
-  
+
 // font
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap')
 $base-font-family: 'Roboto Mono', monospace
 $base-font-size: 16px
 $large-font-size: calc($base-font-size * 2.5)
 
-  
 *
   margin: 0
   padding: 0
@@ -26,27 +38,34 @@ body
   justify-content: center
   align-items: center
   height: 100vh
-  background-color: $primary-bg-color
+  background-color: white
 
 $calculator-downpress-transition: 100ms ease
 
 #calculator
+  position: relative
   display: grid
   grid-template-areas: 'screen screen screen screen''ac ac ce ce''number-7 number-8 number-9 divide''number-4 number-5 number-6 multiply''number-1 number-2 number-3 subtract''number-0 decimal equal add'
   gap: $base-spacing
   padding: calc($base-spacing * 3)
+  background-color: $calc-fg-color
   border-radius: $base-border-radius
+  box-shadow: 0 $base-spacing 0 0 $calc-bg-color
+
+  &::after
+    content: ''
+    position: absolute
 
   & #screen
     grid-area: screen
     display: flex
     flex-direction: column
     gap: $base-spacing
-    background-color: $primary-fg-color
     padding: $base-spacing
     border-radius: $base-border-radius
-  
-    & span 
+    background-color: $screen-bg-color
+
+    & span
       display: flex
       justify-content: right
       align-items: center
@@ -56,42 +75,54 @@ $calculator-downpress-transition: 100ms ease
       &#screen-top
         height: $base-font-size
         font-size: $base-font-size
+        color: $screen-top-text-color
 
       &#screen-bottom
         height: $large-font-size
         font-size: $large-font-size
-  
+        color: $screen-bottom-text-color
+
   & button
     position: relative
     min-height: calc($base-spacing * 5)
     min-width: calc($base-spacing * 6)
     font-size: $base-font-size
     font-family: $base-font-family
-    color: $text-color
-    background-color: $primary-fg-color
     border: none
     border-radius: $base-border-radius
     margin-bottom: $base-spacing
-    transition: margin $calculator-downpress-transition
+    transition-property: margin, box-shadow
+    transition: $calculator-downpress-transition
+
+    &.clear,
+    &#equal
+      color: $clear-btn-text-color
+      background-color: $clear-btn-fg-color
+      box-shadow: 0 $base-spacing 0 0 $clear-btn-bg-color
+
+      &:active
+        box-shadow: 0 0 0 0 $clear-btn-bg-color
+
+    &.number-btn,
+    &#decimal
+      color: $main-btn-text-color
+      background-color: $main-btn-fg-color
+      box-shadow: 0 $base-spacing 0 0 $main-btn-bg-color
+
+      &:active
+        box-shadow: 0 0 0 0 $main-btn-bg-color
+
+    &.equation-btn
+      color: $equation-btn-text-color
+      background-color: $equation-btn-fg-color
+      box-shadow: 0 $base-spacing 0 0 $equation-btn-bg-color
+
+      &:active
+        box-shadow: 0 0 0 0 $equation-btn-bg-color
 
     &:active
       margin-bottom: 0
       margin-top: $base-spacing
-
-      &::after
-        bottom: 0
-
-    &::after
-      content: ''
-      z-index: -1
-      position: absolute
-      bottom: -$base-spacing
-      left: 0
-      height: 100%
-      width: 100%
-      background-color: $secondary-fg-color
-      border-radius: $base-border-radius
-      transition: bottom $calculator-downpress-transition
 
 #ac
   grid-area: ac
@@ -129,4 +160,3 @@ $calculator-downpress-transition: 100ms ease
   grid-area: decimal
 #equal
   grid-area: equal
-
