@@ -7,20 +7,68 @@ window.addEventListener('load', () => {
     screenBottomSpan.innerHTML = currentNumber.toString();
   }
 
-  const btnClickSoundDown = new Audio('./sounds/btn-click-sound-down.mp3');
-  const btnClickSoundUp = new Audio('./sounds/btn-click-sound-up.mp3');
-
   document.querySelectorAll('#calculator button').forEach((btn) => {
     btn.addEventListener('mousedown', () => {
-      btnClickSoundDown.pause();
-      btnClickSoundDown.currentTime = 0;
-      btnClickSoundDown.play();
+      playClickDown();
     });
     btn.addEventListener('mouseup', () => {
-      btnClickSoundUp.pause();
-      btnClickSoundUp.currentTime = 0;
-      btnClickSoundUp.play();
+      playClickUp();
     });
+  });
+
+  document.addEventListener('keydown', function (event) {
+    const key = event.key;
+
+    if (parseInt(event.key)) {
+      playClickDown();
+      addNumber(key);
+    } else if (key === ',' || key === '.') {
+      playClickDown();
+      addDecimal();
+    } else if (key === '=' || key === 'Enter') {
+      playClickDown();
+      equateResult();
+    } else if (
+      key === '+' ||
+      key === '-' ||
+      key === 'x' ||
+      key === '*' ||
+      key === '/'
+    ) {
+      playClickDown();
+      if (key === '*') {
+        equateOldAndCurrent('x');
+      } else {
+        equateOldAndCurrent(key);
+      }
+    } else if (key === 'Delete') {
+      playClickDown();
+      allClear();
+    } else if (key === 'Backspace') {
+      playClickDown();
+      clearEntry();
+    }
+  });
+
+  document.addEventListener('keyup', function (event) {
+    const key = event.key;
+
+    if (
+      parseInt(key) ||
+      key === ',' ||
+      key === '.' ||
+      key === '=' ||
+      key === 'Enter' ||
+      key === '+' ||
+      key === '-' ||
+      key === 'x' ||
+      key === '*' ||
+      key === '/' ||
+      key === 'Delete' ||
+      key === 'Backspace'
+    ) {
+      playClickUp();
+    }
   });
 
   document.getElementById('ac')?.addEventListener('click', () => {
@@ -51,6 +99,21 @@ window.addEventListener('load', () => {
     });
   });
 });
+
+const btnClickSoundDown = new Audio('./sounds/btn-click-sound-down.mp3');
+const btnClickSoundUp = new Audio('./sounds/btn-click-sound-up.mp3');
+
+function playClickDown() {
+  btnClickSoundDown.pause();
+  btnClickSoundDown.currentTime = 0;
+  btnClickSoundDown.play();
+}
+
+function playClickUp() {
+  btnClickSoundUp.pause();
+  btnClickSoundUp.currentTime = 0;
+  btnClickSoundUp.play();
+}
 
 let screenTopSpan: HTMLSpanElement | null;
 let screenBottomSpan: HTMLSpanElement | null;
