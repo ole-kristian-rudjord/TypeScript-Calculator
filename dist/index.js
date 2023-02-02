@@ -17,7 +17,7 @@ window.addEventListener('load', () => {
     });
     document.addEventListener('keydown', function (event) {
         const key = event.key;
-        if (parseInt(event.key)) {
+        if (parseInt(event.key) || key === "0") {
             playClickDown();
             addNumber(key);
         }
@@ -54,6 +54,7 @@ window.addEventListener('load', () => {
     document.addEventListener('keyup', function (event) {
         const key = event.key;
         if (parseInt(key) ||
+            key === "0" ||
             key === ',' ||
             key === '.' ||
             key === '=' ||
